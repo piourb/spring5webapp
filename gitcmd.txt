@@ -1,0 +1,16 @@
+git clone https://github.com/piourb/spring5webapp.git
+
+
+git remote add spring5guruApp https://github.com/springframeworkguru/spring5webapp.git
+
+git branch -a
+git branch -r
+git branch
+
+git ls-remote
+
+git ls-remote --heads spring5guruApp
+
+
+git remote show origin
+git remote show spring5guruApp
