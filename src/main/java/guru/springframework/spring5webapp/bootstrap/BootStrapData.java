@@ -49,17 +49,23 @@ public class BootStrapData implements CommandLineRunner {
 	private void setupDataToDb() {
 
 		Author a=new Author("xxxx:1", "xxxx:2", Collections.EMPTY_SET);
-		Book b=new Book("xxxx:1", "xxxx:2", Collections.EMPTY_SET);
-		a.setBooks(new HashSet<Book>(Arrays.asList(b)));
-		b.setAuthors(new HashSet<Author>(Arrays.asList(a)));
 		
-
+		Book b0=new Book("book:1", "isbn:1", Collections.EMPTY_SET);		
+		b0.setAuthors(new HashSet<Author>(Arrays.asList(a)));
+				
+		Book b1=new Book("book:2", "isbn:2", Collections.EMPTY_SET);		
+		b1.setAuthors(new HashSet<Author>(Arrays.asList(a)));
+		
+		a.setBooks(new HashSet<Book>(Arrays.asList(b0,b1)));
 		authorRepository.save(a);
-		bookRepository.save(b);
+		bookRepository.save(b0);
+		bookRepository.save(b1);
 		
 		Publisher p=new Publisher("pub:1", "my adress:1");
-		p.getBooks().add(b);
-		b.setPublisher(p);		
+		p.getBooks().add(b0);
+		p.getBooks().add(b1);
+		b0.setPublisher(p);
+		b1.setPublisher(p);	
 		publisherRepository.save(p);		
 	}
 
